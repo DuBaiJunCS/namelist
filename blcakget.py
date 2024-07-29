@@ -41,7 +41,7 @@ def gettaskjson():
     response = requests.get('https://gitee.com/dubai03/namelist/raw/master/task.json',  headers=headers)
     if "Repository or file not found" in response.text:
         print("文件不存在")
-    print(response.text)
+    print(response.json())
 
 
 
