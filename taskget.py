@@ -3,7 +3,9 @@ import requests
 
 
 
-def getblackV2():
+
+
+def gettaskjson():
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:127.0) Gecko/20100101 Firefox/127.0',
         'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
@@ -19,15 +21,15 @@ def getblackV2():
         'Cache-Control': 'no-cache',
     }
 
-    response = requests.get('https://gitee.com/dubai03/namelist/raw/master/black.txt',  headers=headers)
-    print(response.text)
-
-
+    response = requests.get('https://gitee.com/dubai03/namelist/raw/master/task.json',  headers=headers)
+    if "Repository or file not found" in response.text:
+        print("文件不存在")
+    print(response.json())
 
 
 
 if __name__ == '__main__':
     import time
     while True:
-        getblackV2()
+        gettaskjson()
         time.sleep(3)
