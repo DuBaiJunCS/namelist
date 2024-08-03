@@ -46,4 +46,7 @@ def gettaskjson():
 
 
 if __name__ == '__main__':
-    gettaskjson()
+    import time
+    while True:
+        gettaskjson()
+        time.sleep(3)
