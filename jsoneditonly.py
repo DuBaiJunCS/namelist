@@ -7,6 +7,7 @@ class JsonEditor(QMainWindow):
         super().__init__()
         self.setWindowTitle('JSON Editor')
         self.setGeometry(100, 100, 800, 600)
+        self.keys=['机器码', '标志','参数', '任务名' , '最晚执行时间']
 
         self.table_widget = QTableWidget()
         self.load_button = QPushButton('Load JSON')
@@ -52,13 +53,15 @@ class JsonEditor(QMainWindow):
             QMessageBox.critical(self, "Error", "Invalid JSON format")
             return
 
-        keys = set().union(*(d.keys() for d in self.json_data))
-        self.table_widget.setColumnCount(len(keys))
+
+
+        self.table_widget.setColumnCount(len(self.keys))
         self.table_widget.setRowCount(len(self.json_data))
-        self.table_widget.setHorizontalHeaderLabels(keys)
+        print("keys",self.keys)
+        self.table_widget.setHorizontalHeaderLabels(self.keys)
 
         for row, item in enumerate(self.json_data):
-            for col, key in enumerate(keys):
+            for col, key in enumerate(self.keys):
                 value = item.get(key, "")
                 self.table_widget.setItem(row, col, QTableWidgetItem(str(value)))
 
@@ -84,10 +87,9 @@ class JsonEditor(QMainWindow):
         self.populate_table_with_template()
 
     def populate_table_with_template(self):
-        keys = ["机器码", "任务名", "标志", "最晚执行时间"]  # 可扩展的初始属性
-        self.table_widget.setColumnCount(len(keys))
+        self.table_widget.setColumnCount(len(self.keys))
         self.table_widget.setRowCount(0)
-        self.table_widget.setHorizontalHeaderLabels(keys)
+        self.table_widget.setHorizontalHeaderLabels(self.keys)
 
     def add_row(self):
         row_count = self.table_widget.rowCount()
