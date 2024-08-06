@@ -52,13 +52,15 @@ class TimeModifyDialog(QDialog):
 
 
 class JsonEditor(QMainWindow):
-    def __init__(self):
+    def __init__(self,keys,file_name):
         super().__init__()
         self.that = self
         self.aa = []
         self.setWindowTitle('JSON Editor')
         self.setGeometry(100, 100, 800, 600)
-        self.keys = ['机器码', '标志', '参数', '任务名', '最晚执行时间', "操作"]
+        self.keys = keys
+        self.file_name = file_name
+
 
         self.table_widget = QTableWidget()
         self.load_button = QPushButton('Load JSON')
@@ -90,11 +92,10 @@ class JsonEditor(QMainWindow):
         self.aa=[]
         # options = QFileDialog.Options()
         # file_name, _ = QFileDialog.getOpenFileName(self, "Open JSON File", "", "JSON Files (*.json);;All Files (*)", options=options)
-        file_name = "task.json"
 
-        if file_name:
+        if self.file_name:
             try:
-                with open(file_name, 'r', encoding="utf-8") as file:
+                with open(self.file_name, 'r', encoding="utf-8") as file:
                     self.json_data = json.load(file)
                     self.populate_table()
             except Exception as e:
@@ -143,8 +144,8 @@ class JsonEditor(QMainWindow):
     def save_json(self):
         # options = QFileDialog.Options()
         # file_name, _ = QFileDialog.getSaveFileName(self, "Save JSON File", "", "JSON Files (*.json);;All Files (*)", options=options)
-        file_name = "task.json"
-        if file_name:
+        # file_name = "task.json"
+        if self.file_name:
             try:
                 keys = [self.table_widget.horizontalHeaderItem(i).text() for i in
                         range(self.table_widget.columnCount())]
@@ -153,7 +154,7 @@ class JsonEditor(QMainWindow):
                     item = {keys[col]: self.table_widget.item(row, col).text() for col in
                             range(self.table_widget.columnCount())}
                     data.append(item)
-                with open(file_name, 'w', encoding="utf-8") as file:
+                with open(self.file_name, 'w', encoding="utf-8") as file:
                     json.dump(data, file, indent=4)
                 QMessageBox.information(self, "Success", "File saved successfully")
             except Exception as e:
@@ -190,6 +191,7 @@ class JsonEditor(QMainWindow):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    editor = JsonEditor()
+    keys=['机器码', '标志', '参数', '任务名', '最晚执行时间', "操作"]
+    editor = JsonEditor(keys)
     editor.show()
     sys.exit(app.exec_())
