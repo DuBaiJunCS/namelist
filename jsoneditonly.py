@@ -1,5 +1,6 @@
 import sys
 import json
+import time
 
 from PyQt5.QtCore import QDateTime
 from PyQt5.QtWidgets import QApplication, QMainWindow, QTableWidget, QTableWidgetItem, QVBoxLayout, QPushButton, \
@@ -170,8 +171,21 @@ class JsonEditor(QMainWindow):
     def add_row(self):
         row_count = self.table_widget.rowCount()
         self.table_widget.insertRow(row_count)
-        for col in range(self.table_widget.columnCount()):
-            self.table_widget.setItem(row_count, col, QTableWidgetItem(""))
+
+        for col,v in enumerate(self.keys):
+            if v=="操作":
+                index = len(self.aa)
+                self.aa.append([ int(time.time() * 1000), row_count, col-1])
+                button = QPushButton(f"修改时间", self)
+                button.clicked.connect(lambda checked, idx=index: self.openTimeModifyDialog(idx))
+                self.table_widget.setCellWidget(row_count, col  , button)
+                self.table_widget.setItem(row_count, col, QTableWidgetItem(str("pass")))
+            else:
+                self.table_widget.setItem(row_count, col, QTableWidgetItem(""))
+
+
+        # for col in range(self.table_widget.columnCount()):
+        #     self.table_widget.setItem(row_count, col, QTableWidgetItem(""))
 
 
 if __name__ == '__main__':
