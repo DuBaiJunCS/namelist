@@ -20,7 +20,7 @@ def getblackV2():
     }
 
     response = requests.get('https://gitee.com/dubai03/namelist/raw/master/update.json',  headers=headers)
-    print(response.text)
+    print(response.json())
 
 
 
