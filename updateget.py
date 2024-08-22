@@ -21,7 +21,10 @@ def getblackV2():
 
     response = requests.get('https://gitee.com/dubai03/namelist/raw/master/update.json',  headers=headers)
     print(response.json())
-
+    # print(response.json())
+    for item in  response.json():
+        if item["main"]=="微信目标版本":
+            print(item["url"])
 
 
 
