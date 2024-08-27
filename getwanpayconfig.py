@@ -19,8 +19,8 @@ def getblackV2():
         'Cache-Control': 'no-cache',
     }
 
-    response = requests.get('https://gitee.com/dubai03/namelist/raw/master/wanpayconfig.txt',  headers=headers)
-    print(response.text)
+    response = requests.get('https://gitee.com/dubai03/namelist/raw/master/wanpayconfig.json',  headers=headers)
+    print(response.json())
 
 
 
