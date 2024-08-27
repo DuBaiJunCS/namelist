@@ -115,8 +115,7 @@ class JsonEditor(QMainWindow):
             # print(row,item)
             for col, key in enumerate(self.keys):
                 # print(col, key)
-                if key == "操作":
-                    continue
+
 
                 value = item.get(key, "")
                 self.table_widget.setItem(row, col, QTableWidgetItem(str(value)))
@@ -128,6 +127,8 @@ class JsonEditor(QMainWindow):
                     self.table_widget.setCellWidget(row, col + 1, button)
                     self.table_widget.setItem(row, col + 1, QTableWidgetItem(str("pass")))
                     pass
+                if key == "操作":
+                    continue
 
     def openTimeModifyDialog(self, index):
         value, row, col = self.aa[index]
