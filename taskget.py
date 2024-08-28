@@ -32,4 +32,4 @@ if __name__ == '__main__':
     import time
     while True:
         gettaskjson()
-        time.sleep(3)
+        time.sleep(5)
