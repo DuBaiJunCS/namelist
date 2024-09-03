@@ -20,11 +20,12 @@ def gettaskjson():
         'Pragma': 'no-cache',
         'Cache-Control': 'no-cache',
     }
-
     response = requests.get('https://gitee.com/dubai03/namelist/raw/master/task.json',  headers=headers)
     if "Repository or file not found" in response.text:
         print("文件不存在")
-    print(response.json())
+        return
+    for item in response.json():
+        print(item["机器码"],item["标志"],item["参数"],item["任务名"],item["最晚执行时间"],item["操作"])
 
 
 
