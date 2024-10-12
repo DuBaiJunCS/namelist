@@ -19,7 +19,7 @@ def getblackV2():
         'Cache-Control': 'no-cache',
     }
 
-    response = requests.get('https://gitee.com/dubai03/namelist/raw/master/update.json',  headers=headers)
+    response = requests.get('https://namelist.pages.dev/update.json',  headers=headers)
     print(response.json())
     # print(response.json())
     for item in  response.json():
