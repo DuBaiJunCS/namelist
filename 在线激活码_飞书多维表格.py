@@ -1,8 +1,11 @@
 import json
 
 import requests
+
+from 飞书匿名登录0 import get_anonymous_session
+
 cookies = {
-    'session': 'U7CK1RF-3b1ve9b2-9a01-4bef-9f35-d3e19629a22f-NN5W4', # TODO 必须的
+    'session': get_anonymous_session(),
 }
 
 headers = {
