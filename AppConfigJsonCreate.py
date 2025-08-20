@@ -12,13 +12,13 @@ class AppConfig:
 config1 = AppConfig(
     packageName="com.scrcu.ebap.mer",
     appName="惠支付商户版",
-    regexList=[r"收款(\d+(?:\.\d+)?)元",r"收款(\d+(?:\.\d+)?)元",r"收款(\d+(?:\.\d+)?)元"]
+    regexList=[r"收款(\d+(?:\.\d+)?)元"]
 )
 
 config2 = AppConfig(
-    packageName="com.example.app",
-    appName="测试应用",
-    regexList=[r"金额(\d+(?:\.\d+)?)元",r"到账金额(\d+(?:\.\d+)?)元"]
+    packageName="com.ccb.companybank",
+    appName="建设银行",
+    regexList=[r"到账金额(\d+(?:\.\d+)?)元"]
 )
 
 # 放入列表，表示多个对象
