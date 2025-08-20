@@ -16,8 +16,8 @@ config1 = AppConfig(
 )
 
 config2 = AppConfig(
-    packageName="com.ccb.companybank",
-    appName="建设银行",
+    packageName="com.ccb",
+    appName="建设银行测试",
     regexList=[r"到账金额(\d+(?:\.\d+)?)元"]
 )
 
